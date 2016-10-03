@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Graph Viz</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="css/simple-sidebar.css" rel="stylesheet">
+
+  <link href="css/vis.min.css" rel="stylesheet">
+  <link href="css/codemirror.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+          <a href="#">
+            GraphViz
+          </a>
+        </li>
+        <li>
+          <button type="button" class="btn btn-primary glyphicon glyphicon-align-left" data-toggle="modal" data-target="#myModal">
+            Data
+          </button>
+        </li>
+        <li>
+          <label class="btn btn-primary glyphicon glyphicon-file">
+              Browse <input type="file" style="display: none;" id="importFile">
+          </label>
+        </li>
+        <li>
+          <button type="button" class="btn btn-primary glyphicon glyphicon-play" id="play-animation-btn">
+            Play
+          </button>
+          <button type="button" class="btn btn-primary glyphicon glyphicon-stop" id="stop-animation-btn">
+            Stop
+          </button>
+        </li>
+         <li class="sidebar-brand">
+            DIRECTIONS
+        </li>
+        <li>
+          <button type="button" class="btn btn-primary glyphicon glyphicon-arrow-right" id="hierarc-lr">
+          </button>
+          <button type="button" class="btn btn-primary glyphicon glyphicon-arrow-up" id="hierarc-du">
+          </button>
+          <button type="button" class="btn btn-primary glyphicon glyphicon-arrow-down" id="hierarc-ud">
+          </button>
+          <button type="button" class="btn btn-primary glyphicon glyphicon-arrow-left" id="hierarc-rl">
+          </button>
+        </li>
+        <li>
+          <button type="button" class="btn btn-primary glyphicon glyphicon-refresh" id="hierarc-refresh">
+            CLEAR
+          </button>
+        </li>
+      </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12">
+            <div id="mynetwork"></div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12">
+            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+
+  <!-- Add Data modal --> 
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Add Data</h4>
+        </div>
+        <div class="modal-body">
+          <textarea id="datatextarea"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary submit-data">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Add Data modal -->
+
+  <!-- jQuery -->
+  <script src="js/jquery.js"></script>
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="js/bootstrap.min.js"></script>
+
+  <script src="js/vis.min.js"></script>
+  <script src="js/codemirror/codemirror.js"></script>
+  <script src="js/codemirror/mode/javascript/javascript.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+</body>
+
+</html>
