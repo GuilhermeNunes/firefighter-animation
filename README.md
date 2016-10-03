@@ -3,7 +3,6 @@ Simple animation interface for the firefighter problem
 
 Accepted JSON format:
 
-<code>
 {
 		"nodes": [
 	    {"id": 1, "label": "1"},
@@ -30,4 +29,4 @@ Accepted JSON format:
 			}
 		]
 }
-</code>
+
