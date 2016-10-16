@@ -120,6 +120,21 @@ window.onload = function() {
 		});
 	};
 
+	var sanitizeJson = function(str) {
+		str = str.split('\n').join('');
+
+		// Remove spaces.
+		str = str.replace(/ */g, '');
+
+		// Substitute single quotes for double quotes.
+		str = str.replace(/'/g, '"');
+
+		// Remove commas before closing bracktes.
+		str = str.replace(/,]/g, ']');
+
+		return str;
+	};
+
 	var readSingleFile = function(evt) {
     //Retrieve the first (and only!) File from the FileList object
     var f = evt.target.files[0]; 
@@ -128,7 +143,8 @@ window.onload = function() {
       var r = new FileReader();
       r.onload = function(e) { 
 	      var contents = e.target.result;
-        setData(JSON.parse(contents)); 
+	      var sanitizedString = sanitizeJson(contents);
+        setData(JSON.parse(sanitizedString)); 
       }
       r.readAsText(f);
     } else { 
@@ -161,12 +177,15 @@ window.onload = function() {
 
 
 	var setData = function(data) {
+		console.log('SET_DATA');
 		mainData = data;
 		loadData();
 	}
 
 	/* Loads the data from the input, or the default data if none is provided */
 	var loadData = function() {
+		console.log('LOAD_DATA');
+		console.log("MainData: ", mainData);
 		nodes = new vis.DataSet(mainData.nodes);
 		edges = new vis.DataSet(mainData.edges);
 		source_nodes = mainData.source_nodes;
@@ -279,7 +298,8 @@ window.onload = function() {
 		})
 		$('.submit-data').click(function() {
 			$('#myModal').modal('hide');
-			var data = JSON.parse(modelInputTextArea.getValue());
+			var sanitizedString = sanitizeJson(modelInputTextArea.getValue());
+			var data = JSON.parse(sanitizedString);
 			setData(data);
 		});
 
