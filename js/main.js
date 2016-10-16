@@ -16,11 +16,11 @@ window.onload = function() {
 	var edges;
 
 	// Animation variables
-	var animationSteps;
+	var animationSteps = [];
 	var intervalObject;
-	var animationTimesteps;
-	var animationTimesrun;
-	var isAnimationRunning;
+	var animationTimesteps = 0;
+	var animationTimesrun = 0;
+	var isAnimationRunning = false;
 
 	// The data input text area
 	var modelInputTextArea;
@@ -196,7 +196,12 @@ window.onload = function() {
 	  };
 
 		network.setData(graph);
-		animationSteps = mainData.animation;
+		animationSteps = [];
+		for(var i = 0; i < mainData.animation.length; i++) {
+			if(mainData.animation[i].burns.length == 0 && mainData.animation[i].saves.length == 0)
+				break;
+			animationSteps.push(mainData.animation[i]);
+		}
 		animationTimesteps = animationSteps.length - 1;
 		clearGraphFormatting();
 	};
